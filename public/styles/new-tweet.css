@@ -1,0 +1,30 @@
+/*.text {
+  padding: 50px;
+}*/
+
+.new-tweet h2 {
+  border-bottom: 1px black solid;
+  margin: 0 0 10px;
+}
+
+.new-tweet {
+  align-items: center;
+  padding: 15px 20px;
+  margin: 2em;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: grey;
+  border-width: 0.5px;
+  background: #FFE4E1;
+  height: 150px;
+}
+
+.new-tweet textarea {
+  align-items: center;
+  padding: 5px;
+  width: 100%;
+}
+
+.counter {
+  padding-left: 260px;
+}
