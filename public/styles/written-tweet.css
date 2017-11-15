@@ -1,0 +1,72 @@
+.tweet {
+  align-items: center;
+  border-color: grey;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 0.5px;
+  background: white;
+  height: 180px;
+  margin: 2em;
+  overflow: hidden;
+  opacity: 0.7;
+}
+
+.tweet:hover
+{
+  opacity: 1.0;
+}
+.tweet header {
+  background-color: lightgrey;
+  display: flex;
+  height: 60px;
+  padding: 10px;
+ /* opacity: 0.5;*/
+}
+
+/*.tweet header:hover
+{
+  opacity: 1.0;
+}
+*/
+.icons i {
+  opacity: 0.1;
+}
+
+.icons i:hover
+{
+  opacity: 1.0;
+}
+
+.tweet > div {
+  align-items: center;
+  border-bottom: 1px solid grey;
+  height: 48%;
+  padding: 15px;
+}
+
+.tweet footer {
+  padding: 10px;
+  vertical-align: middle;
+  line-height: 10px;
+}
+
+.tweet header img {
+  border-radius: 5px;
+  height: 100%;
+}
+
+.tweet .user-info {
+  flex: 1;
+ /* width: 100%;*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+
+.tweet footer .icons {
+  float: right;
+}
+
+
+
