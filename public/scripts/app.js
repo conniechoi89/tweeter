@@ -60,17 +60,24 @@ $(document).ready(function() {
     // var created_at = data.created_at;
     // var $tweet = $('.article.tweet').addClass('tweet');
 
+  function escape(str) {
+    return str;
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
     var article = `<article class='tweet'>
           <header>
-            <img src="${tweetData.user.avatars.regular}" alt="avatars" />
+            <img src="${escape(tweetData.user.avatars.regular)}" alt="avatars" />
             <div class="user-info">
-              <h2>${tweetData.user.name}</h2>
-              <span>${tweetData.user.handle}</span>
+              <h2>${escape(tweetData.user.name)}</h2>
+              <span>${escape(tweetData.user.handle)}</span>
           </div>
           </header>
-          <div>${tweetData.content.text}</div>
+          <div>${escape(tweetData.content.text)}</div>
           <footer>
-            ${tweetData.created_at}
+            ${escape(tweetData.created_at)}
             <div class="icons">
               <i class="fa fa-flag" aria-hidden="true"></i>
               <i class="fa fa-retweet" aria-hidden="true"></i>
@@ -79,9 +86,8 @@ $(document).ready(function() {
           </footer>
           </article>`;
     return article;
-  }
+};
 //   $('.tweet-dash').append(createTweetElement(tweetData));
-
 
 function renderTweets(tweetData) {
   tweetData.forEach(function(tweet) {
@@ -89,8 +95,10 @@ function renderTweets(tweetData) {
     $('.tweet-dash').prepend(newTweet);
   });
 };
-renderTweets(tweetData);
+  renderTweets(tweetData);
+
 });
+
 //   // loops through tweets
 //     // calls createTweetElement for each tweet
 //     // takes return value and appends it to the tweets container
