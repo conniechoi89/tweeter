@@ -1,16 +1,3 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
-
-    // var name = data.user.name
-    // var avatars = data.user.avatars.regular;
-    // var handle = data.user.handle;
-    // var content = data.content.text;
-    // var created_at = data.created_at;
-    // var $tweet = $('.article.tweet').addClass('tweet');
 
 $(function() {
 
@@ -53,37 +40,34 @@ $(function() {
 
 
   function loadTweets() {
-
     $.get('/tweets')
       .success(tweets => renderTweets(tweets))
-      .error(error => console.log('error', error));
-
+      .error(data => alert('error'));
   }
+
 
   function submitTweet(e) {
     e.preventDefault();
+    const $textArea = $form.find('#tweetText');
+    const inputLength = $textArea.val().length;
+    if (!inputLength) {
+      alert('Cannot be empty');
+
+    } else if (inputLength > maxLength) {
+      alert('Tooooooo Lonnnnnnnggggg');
+
+    } else {$.post('/tweets', $form.serialize()
+      .success(() => loadTweets())
+      .error(data => alert('error')));
+    };
+
+    }
     const $form = $(this);
 
-    $.post('/tweets', $form.serialize())
-      .success(() => loadTweets())
-      .error(data => alert(data.error));
-
-  }
 
   loadTweets();
+  const maxLength = 140;
 
   $("form").on("submit", submitTweet);
-
 });
-
-
-  // //Two methods:
-  // //1. the method of id
-  // <input type="text" id="myTest" class="mygod" />
-  // $('#myTest').val()
-
-
-  // //2. Method to access through the class
-  // $('.mygod').val();
-
 
