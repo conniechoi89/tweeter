@@ -18,3 +18,21 @@ nav {
 #nav-bar .header {
   font-size: 200%;
 }
+
+.compose {
+    background: lightcyan;
+    padding: 15px 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-color: black;
+    border-radius: 10px;
+    border-width: 0.5px;
+    margin-left: auto;
+    opacity: 0.7;
+}
+
+.compose:hover
+{
+  opacity: 1.0;
+}
