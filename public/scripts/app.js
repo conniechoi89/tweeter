@@ -4,55 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
- // Fake data taken from tweets.json
-var tweetData = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": {
-        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-      },
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": {
-        "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-      },
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Johann von Goethe",
-      "avatars": {
-        "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-      },
-      "handle": "@johann49"
-    },
-    "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-    },
-    "created_at": 1461113796368
-  }
-];
-$(document).ready(function() {
-  function createTweetElement(tweetData) {
+
     // var name = data.user.name;
     // var avatars = data.user.avatars.regular;
     // var handle = data.user.handle;
@@ -60,12 +12,16 @@ $(document).ready(function() {
     // var created_at = data.created_at;
     // var $tweet = $('.article.tweet').addClass('tweet');
 
-  function escape(str) {
+function escape(str) {
     return str;
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
-  }
+}
+
+$(document).ready(function() {
+
+  function createTweetElement(tweetData) {
 
     var article = `<article class='tweet'>
           <header>
@@ -86,19 +42,94 @@ $(document).ready(function() {
           </footer>
           </article>`;
     return article;
-};
+  }; //function CreateTweetData closes here.
+
+  function renderTweets(tweetData) {
+    tweetData.forEach(function(tweet) {
+      var newTweet= createTweetElement(tweet)
+      $('.tweet-dash').prepend(newTweet);
+    });
+  };
+  //renderTweets(tweetData);
+
 //   $('.tweet-dash').append(createTweetElement(tweetData));
 
-function renderTweets(tweetData) {
-  tweetData.forEach(function(tweet) {
-    var newTweet= createTweetElement(tweet)
-    $('.tweet-dash').prepend(newTweet);
-  });
-};
-  renderTweets(tweetData);
-
-});
-
-//   // loops through tweets
+ //   // loops through tweets
 //     // calls createTweetElement for each tweet
 //     // takes return value and appends it to the tweets container
+
+
+  function loadTweets(){
+    //makes an ajax call to load the data from /tweets
+    $.ajax({
+      type: "GET",
+      url: "/tweets",
+      //data: $form.serialize(),
+      success: function(result){
+        console.log("success", result);
+        renderTweets(result);
+      },
+      error: function(error){
+        console.log("error", error);
+      }
+    })
+  }
+  loadTweets();
+
+
+  function submitTweet(event) {
+    event.preventDefault();
+    const $form = $(this);
+    $.ajax({
+      type: "POST",
+      url: "/tweets",
+      data: $form.serialize(),
+      success: function(result){
+        console.log("success", result);
+        var newTweet = {
+              "user": {
+                "name": "Connie",
+                "avatars": {
+                  "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
+                  "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
+                  "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
+                },
+                "handle": "@connie_great"
+              },
+              "content": {
+                "text": $('#tweetText').val()
+              },
+              "created_at": 1461113796368
+            }
+        var temp = createTweetElement(newTweet)
+        $('.tweet-dash').prepend(temp);
+      },
+      error: function(error){
+        console.log("error", error);
+      }
+    })
+      // .done(() => {
+      //   const type = $form.find('input[name="type"]').val();
+      //   console.log(type);
+      //   //$('.tweet-dash').prepend(`<textarea>${(form)}</textarea>`);
+      // })
+  }
+
+  // const $form = $('.new-tweet');
+
+  // $(".new-tweet form").on("submit", submitTweet);
+
+
+  // function loadTweets()
+
+});
+  // //Two methods:
+  // //1. the method of id
+  // <input type="text" id="myTest" class="mygod" />
+  // $('#myTest').val()
+
+
+  // //2. Method to access through the class
+  // $('.mygod').val();
+
+
