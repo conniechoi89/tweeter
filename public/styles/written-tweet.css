@@ -8,7 +8,7 @@
   height: 180px;
   margin: 2em;
   overflow: hidden;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .tweet:hover
@@ -20,23 +20,17 @@
   display: flex;
   height: 60px;
   padding: 10px;
- /* opacity: 0.5;*/
+}
+/** Can use this when if I want hover effect icon seperately
+/*.icons {
+  opacity: 0.1;
 }
 
-/*.tweet header:hover
+.icons:hover
 {
   opacity: 1.0;
 }
 */
-.icons i {
-  opacity: 0.1;
-}
-
-.icons i:hover
-{
-  opacity: 1.0;
-}
-
 .tweet > div {
   align-items: center;
   border-bottom: 1px solid grey;

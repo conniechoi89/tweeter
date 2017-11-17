@@ -15,3 +15,11 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+- Nodemon
+
+## Screenshots
+
+!["Screenshot of two Tweets; one with hover effect"]()
+!["Screenshot of Compose Tweet form after clicking Compose button"](https://github.com/conniechoi89/tweeter/blob/master/doc/tweet-box1.png?raw=true)
+!["Screenshot of Compose Tweet box with text"](https://github.com/conniechoi89/tweeter/blob/master/doc/tweet-box2.png?raw=true)
+!["Screenshot of empty Compose Tweet box after clicking TWEET button and uploading new tweet"](https://github.com/conniechoi89/tweeter/blob/master/doc/tweet-box3.png?raw=true)
