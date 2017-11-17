@@ -60,8 +60,11 @@ $(function() {
 
     } else {
       $.post('/tweets', $form.serialize())
-      .success(() => loadTweets())
-      .error(data => alert('error'));
+      .success(() => {
+        loadTweets();
+        $textArea.val('');
+      })
+      .error(data => alert('ERROR talking to server!  Help!'));
     };
 
   }
@@ -74,12 +77,10 @@ $(function() {
   const maxLength = 140;
 
   $(".new-tweet").hide();
-    $(".compose").click(function(e) {
-        $(".new-tweet").slideToggle();
-        $("textarea").focus();
-    });
-
-
+  $(".compose").click(function(e) {
+    $(".new-tweet").slideToggle();
+    $("textarea").focus();
+  });
 });
 
 
