@@ -21,7 +21,7 @@ $(function() {
         </header>
         <div>${escape(tweetData.content.text)}</div>
         <footer>
-          ${escape(tweetData.created_at)}
+          ${moment(tweetData.created_at).fromNow()}
           <div class="icons">
             <i class="fa fa-flag" aria-hidden="true"></i>
             <i class="fa fa-retweet" aria-hidden="true"></i>
@@ -43,7 +43,7 @@ $(function() {
   function loadTweets() {
     $.get('/tweets')
       .success(tweets => renderTweets(tweets))
-      .error(data => alert('error'));
+      .error(data => console.log("error", data));
   }
 
 
@@ -75,7 +75,7 @@ $(function() {
 
   $(".new-tweet").hide();
     $(".compose").click(function(e) {
-        $(".new-tweet").toggle();
+        $(".new-tweet").slideToggle();
         $("textarea").focus();
     });
 
